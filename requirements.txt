@@ -4,3 +4,4 @@ opencv-python>=4.8.0
 numpy>=1.24.0
 scipy>=1.11.0
 pyyaml>=6.0.1
+filterpy>=1.4.5

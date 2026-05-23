@@ -1,13 +1,22 @@
 # File cấu hình hệ thống tracking
 # Cấu hình Mô hình và Luồng vào
 model_path: "weights/yolo26n-pose.pt"
-video_source: 0  # 0 cho Webcam, hoặc đường dẫn tới file video test, luồng RTSP nhà xưởng
+video_source: C:\DATA\PhD\Project\human_tracking_system\weights\video_0076.mp4 #0  # 0 cho Webcam, hoặc đường dẫn tới file video test, luồng RTSP nhà xưởng
 
-# Tham số Bộ lọc bám vết (Theo thuật toán bài báo áp dụng cho người)
-kpt_iou_thresholds: [0.25, 0.5, 0.9]  # Ngưỡng lọc Giai đoạn 1 (Kpt-IoU)
-norm_l2_thresholds: [0.6, 1.0]        # Ngưỡng lọc Giai đoạn 2 (Norm-L2)
-min_pose_conf: 0.8                     # Độ tin cậy tối thiểu để cứu vớt track
 
-# Tầng Ứng dụng Công nghiệp (Automation Logic)
-max_time_lost: 30                      # Số khung hình tối đa giữ lại track khi mất dấu
-danger_zone_polygon: [[100, 100], [400, 100], [400, 500], [100, 500]] # Vạch ảo an toàn
+# --- THAM SỐ CẤU HÌNH BẬT TẮT PHỤC VỤ ABLATION STUDY ---
+en_kpt_ema: True          # Bật/Tắt bộ lọc mượt khung xương EMA Động (Dynamic EMA)
+en_cascade_recovery: True  # Bật/Tắt Giai đoạn 5.5: Dòng thác khóa quán tính
+en_depth_lock: True        # Bật/Tắt cơ chế khóa chiều sâu tương đối đảo chiều vật lý
+en_ivbb_ghost: True        # Bật/Tắt Giai đoạn 7: Hộp bao ảo / Bóng ma Ghost Track
+
+# --- THAM SỐ BẬT TẮT ĐỒ HỌA VISUALIZER ---
+draw_skeleton_links: False  # TRUE: Vẽ các đường nối xương | FALSE: Ẩn đường nối
+draw_keypoint_dots: True   # TRUE: Vẽ các chấm tròn khớp nối | FALSE: Ẩn các chấm
+
+# --- CỜ BẬT/TẮT CƠ CHẾ CHẠY POSE HOẶC BBOX THUẦN (BASELINE STUDY) ---
+enable_pose_estimation: True   # TRUE: Chạy YOLO-Pose nâng cao | FALSE: Chạy YOLO-Object thường (BoT-SORT gốc) tròn
+
+
+# --- CẤU HÌNH LƯU VIDEO DEBUG ---
+save_debug_video: True         # TRUE: Tự động xuất file video kết quả | FALSE: Tắt tính năng ghi file

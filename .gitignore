@@ -1,9 +1,17 @@
+# Môi trường ảo (Tuyệt đối không push lên Git)
+.venv/
+env/
+venv/
+ENV/
+
+# Các file rác của Python
 __pycache__/
 *.pyc
+
+# Trọng số mô hình và Dữ liệu test nặng
 weights/
 *.pt
 *.onnx
 data/
 *.mp4
 *.avi
-.vscode/
