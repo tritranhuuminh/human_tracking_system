@@ -1,1 +1,13 @@
 # File cấu hình hệ thống tracking
+# Cấu hình Mô hình và Luồng vào
+model_path: "weights/yolo26n-pose.pt"
+video_source: 0  # 0 cho Webcam, hoặc đường dẫn tới file video test, luồng RTSP nhà xưởng
+
+# Tham số Bộ lọc bám vết (Theo thuật toán bài báo áp dụng cho người)
+kpt_iou_thresholds: [0.25, 0.5, 0.9]  # Ngưỡng lọc Giai đoạn 1 (Kpt-IoU)
+norm_l2_thresholds: [0.6, 1.0]        # Ngưỡng lọc Giai đoạn 2 (Norm-L2)
+min_pose_conf: 0.8                     # Độ tin cậy tối thiểu để cứu vớt track
+
+# Tầng Ứng dụng Công nghiệp (Automation Logic)
+max_time_lost: 30                      # Số khung hình tối đa giữ lại track khi mất dấu
+danger_zone_polygon: [[100, 100], [400, 100], [400, 500], [100, 500]] # Vạch ảo an toàn
